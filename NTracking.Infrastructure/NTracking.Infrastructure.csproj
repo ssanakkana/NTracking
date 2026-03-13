@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Data.Sqlite" Version="10.0.3" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.3" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="10.0.3" />
     <FrameworkReference Include="Microsoft.WindowsDesktop.App" />
   </ItemGroup>

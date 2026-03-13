@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NTracking.Core.Abstractions;
 using NTracking.Core.Bus;
@@ -12,6 +13,11 @@ using NTracking.Infrastructure.Storage;
 using NTracking.Infrastructure.Handlers;
 
 HostApplicationBuilder builder = Host.CreateApplicationBuilder(args);
+
+builder.Configuration.AddJsonFile(
+	Path.Combine(AppContext.BaseDirectory, "appsettings.json"),
+	optional: true,
+	reloadOnChange: true);
 
 builder.Services.Configure<IntentInferenceOptions>(builder.Configuration.GetSection(IntentInferenceOptions.SectionName));
 

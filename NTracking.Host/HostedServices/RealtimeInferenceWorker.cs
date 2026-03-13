@@ -17,6 +17,7 @@ public sealed class RealtimeInferenceWorker : BackgroundService
     private readonly IOptionsMonitor<IntentInferenceOptions> optionsMonitor;
     private readonly ILogger<RealtimeInferenceWorker> logger;
     private readonly Dictionary<string, InferenceSessionState> sessionStates = new(StringComparer.Ordinal);
+    private bool disabledStateLogged;
 
     public RealtimeInferenceWorker(
         IInferenceSignalSink signalSink,
@@ -34,21 +35,55 @@ public sealed class RealtimeInferenceWorker : BackgroundService
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
+        IntentInferenceOptions startupOptions = optionsMonitor.CurrentValue;
+        logger.LogInformation(
+            "Realtime inference worker started. Enabled={Enabled} Model={ModelName} MaxContextEvents={MaxContextEvents} TriggerConfidence={TriggerConfidence:F2}",
+            startupOptions.Enabled,
+            startupOptions.ModelName,
+            startupOptions.MaxContextEvents,
+            startupOptions.TriggerConfidence);
+
         await foreach (InferenceSignal signal in signalSink.ReadAllAsync(stoppingToken).ConfigureAwait(false))
         {
             IntentInferenceOptions options = optionsMonitor.CurrentValue;
             InferenceSessionState state = GetOrCreateState(signal.SessionId);
             state.Apply(signal, options.MaxContextEvents);
 
+            logger.LogInformation(
+                "Inference signal received. EventType={EventType} SessionId={SessionId} EventId={EventId} ContextEvents={ContextEvents} Process={ProcessName} Window={WindowTitle}",
+                signal.EventType,
+                signal.SessionId,
+                signal.EventId,
+                state.BuildRequest().RecentSignals.Count,
+                state.CurrentProcessName ?? "<null>",
+                state.CurrentWindowTitle ?? "<null>");
+
             if (!options.Enabled)
             {
+                if (!disabledStateLogged)
+                {
+                    logger.LogWarning(
+                        "Intent inference is disabled. Signals are still collected, but no prediction request will be sent. Set IntentInference:Enabled=true to turn it on.");
+                    disabledStateLogged = true;
+                }
+
                 continue;
             }
 
+            disabledStateLogged = false;
+
             try
             {
+                UserIntentInferenceRequest request = state.BuildRequest();
+                logger.LogInformation(
+                    "Sending inference request. SessionId={SessionId} ContextEvents={ContextEvents} Process={ProcessName} Window={WindowTitle}",
+                    request.SessionId,
+                    request.RecentSignals.Count,
+                    request.CurrentProcessName ?? "<null>",
+                    request.CurrentWindowTitle ?? "<null>");
+
                 UserIntentInferenceResponse response = await inferenceClient
-                    .InferAsync(state.BuildRequest(), stoppingToken)
+                    .InferAsync(request, stoppingToken)
                     .ConfigureAwait(false);
 
                 UserIntentPrediction prediction = new()
@@ -66,7 +101,16 @@ public sealed class RealtimeInferenceWorker : BackgroundService
 
                 predictionRepository.Insert(prediction);
 
-                if ((response.Confidence ?? 0d) >= options.TriggerConfidence)
+                bool isTriggered = (response.Confidence ?? 0d) >= options.TriggerConfidence;
+                logger.LogInformation(
+                    "Prediction stored. Triggered={Triggered} Intent={Intent} Confidence={Confidence} SessionId={SessionId} Explanation={Explanation}",
+                    isTriggered,
+                    response.PredictedIntent,
+                    response.Confidence?.ToString("F2") ?? "<null>",
+                    signal.SessionId,
+                    response.Explanation);
+
+                if (isTriggered)
                 {
                     logger.LogInformation(
                         "Intent trigger: {Intent} confidence={Confidence:F2} session={SessionId}",
@@ -76,10 +120,11 @@ public sealed class RealtimeInferenceWorker : BackgroundService
                     continue;
                 }
 
-                logger.LogDebug(
-                    "Intent updated without trigger: {Intent} confidence={Confidence:F2} session={SessionId}",
+                logger.LogInformation(
+                    "Prediction below trigger threshold. Intent={Intent} confidence={Confidence} threshold={Threshold:F2} session={SessionId}",
                     response.PredictedIntent,
-                    response.Confidence ?? 0d,
+                    response.Confidence?.ToString("F2") ?? "<null>",
+                    options.TriggerConfidence,
                     signal.SessionId);
             }
             catch (OperationCanceledException)

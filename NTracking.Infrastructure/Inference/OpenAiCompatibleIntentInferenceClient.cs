@@ -1,6 +1,7 @@
 using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using NTracking.Core.Abstractions;
 using NTracking.Core.Config;
@@ -14,11 +15,16 @@ public sealed class OpenAiCompatibleIntentInferenceClient : IUserIntentInference
 
     private readonly HttpClient httpClient;
     private readonly IOptionsMonitor<IntentInferenceOptions> optionsMonitor;
+    private readonly ILogger<OpenAiCompatibleIntentInferenceClient> logger;
 
-    public OpenAiCompatibleIntentInferenceClient(HttpClient httpClient, IOptionsMonitor<IntentInferenceOptions> optionsMonitor)
+    public OpenAiCompatibleIntentInferenceClient(
+        HttpClient httpClient,
+        IOptionsMonitor<IntentInferenceOptions> optionsMonitor,
+        ILogger<OpenAiCompatibleIntentInferenceClient> logger)
     {
         this.httpClient = httpClient;
         this.optionsMonitor = optionsMonitor;
+        this.logger = logger;
     }
 
     public async Task<UserIntentInferenceResponse> InferAsync(UserIntentInferenceRequest request, CancellationToken ct)
@@ -49,13 +55,44 @@ public sealed class OpenAiCompatibleIntentInferenceClient : IUserIntentInference
             },
         };
 
+        logger.LogInformation(
+            "Dispatching intent inference HTTP request. Endpoint={Endpoint} Model={ModelName} SessionId={SessionId} ContextEvents={ContextEvents}",
+            options.Endpoint,
+            options.ModelName,
+            request.SessionId,
+            request.RecentSignals.Count);
+
         httpRequest.Content = new StringContent(JsonSerializer.Serialize(payload, SerializerOptions), Encoding.UTF8, "application/json");
 
         using HttpResponseMessage response = await httpClient.SendAsync(httpRequest, ct).ConfigureAwait(false);
         string rawResponseJson = await response.Content.ReadAsStringAsync(ct).ConfigureAwait(false);
+
+        logger.LogInformation(
+            "Intent inference HTTP response received. StatusCode={StatusCode} SessionId={SessionId}",
+            (int)response.StatusCode,
+            request.SessionId);
+
+        if (!response.IsSuccessStatusCode)
+        {
+            logger.LogError(
+                "Intent inference HTTP request failed. StatusCode={StatusCode} Endpoint={Endpoint} Model={ModelName} SessionId={SessionId} ResponseBody={ResponseBody}",
+                (int)response.StatusCode,
+                options.Endpoint,
+                options.ModelName,
+                request.SessionId,
+                CreatePreview(rawResponseJson));
+        }
+
         response.EnsureSuccessStatusCode();
 
-        return ParseResponse(rawResponseJson, options.ModelName);
+        UserIntentInferenceResponse parsedResponse = ParseResponse(rawResponseJson, options.ModelName);
+        logger.LogInformation(
+            "Intent inference response parsed. Model={ModelName} Intent={Intent} Confidence={Confidence}",
+            parsedResponse.ModelName,
+            parsedResponse.PredictedIntent,
+            parsedResponse.Confidence?.ToString("F2") ?? "<null>");
+
+        return parsedResponse;
     }
 
     private static string BuildUserPrompt(UserIntentInferenceRequest request)
@@ -120,5 +157,18 @@ public sealed class OpenAiCompatibleIntentInferenceClient : IUserIntentInference
             confidence,
             modelName,
             rawResponseJson);
+    }
+
+    private static string CreatePreview(string value)
+    {
+        if (string.IsNullOrEmpty(value))
+        {
+            return "<empty>";
+        }
+
+        const int maxLength = 600;
+        return value.Length <= maxLength
+            ? value
+            : string.Concat(value.AsSpan(0, maxLength), "...");
     }
 }
