@@ -10,9 +10,9 @@ public sealed class TrackingWorker : IHostedService
 {
     private readonly IEnumerable<ICollector> collectors;
     private readonly IEventBus eventBus;
-    private readonly IEnumerable<IEventHandler<ProcessEvent>> processEventHandlers;
-    private readonly IEnumerable<IEventHandler<WindowEvent>> windowEventHandlers;
-    private readonly IEnumerable<IEventHandler<InputSnapshotEvent>> inputSnapshotEventHandlers;
+    private readonly IEventHandler<ProcessEvent> processEventHandler;
+    private readonly IEventHandler<WindowEvent> windowEventHandler;
+    private readonly IEventHandler<InputSnapshotEvent> inputSnapshotEventHandler;
     private readonly SchemaInitializer schemaInitializer;
     private readonly EventBatchWriter batchWriter;
     private readonly ILogger<TrackingWorker> logger;
@@ -20,18 +20,18 @@ public sealed class TrackingWorker : IHostedService
     public TrackingWorker(
         IEnumerable<ICollector> collectors,
         IEventBus eventBus,
-        IEnumerable<IEventHandler<ProcessEvent>> processEventHandlers,
-        IEnumerable<IEventHandler<WindowEvent>> windowEventHandlers,
-        IEnumerable<IEventHandler<InputSnapshotEvent>> inputSnapshotEventHandlers,
+        IEventHandler<ProcessEvent> processEventHandler,
+        IEventHandler<WindowEvent> windowEventHandler,
+        IEventHandler<InputSnapshotEvent> inputSnapshotEventHandler,
         SchemaInitializer schemaInitializer,
         EventBatchWriter batchWriter,
         ILogger<TrackingWorker> logger)
     {
         this.collectors = collectors;
         this.eventBus = eventBus;
-        this.processEventHandlers = processEventHandlers;
-        this.windowEventHandlers = windowEventHandlers;
-        this.inputSnapshotEventHandlers = inputSnapshotEventHandlers;
+        this.processEventHandler = processEventHandler;
+        this.windowEventHandler = windowEventHandler;
+        this.inputSnapshotEventHandler = inputSnapshotEventHandler;
         this.schemaInitializer = schemaInitializer;
         this.batchWriter = batchWriter;
         this.logger = logger;
@@ -40,21 +40,9 @@ public sealed class TrackingWorker : IHostedService
     public async Task StartAsync(CancellationToken cancellationToken)
     {
         schemaInitializer.Initialize();
-
-        foreach (IEventHandler<ProcessEvent> handler in processEventHandlers)
-        {
-            eventBus.Subscribe(handler);
-        }
-
-        foreach (IEventHandler<WindowEvent> handler in windowEventHandlers)
-        {
-            eventBus.Subscribe(handler);
-        }
-
-        foreach (IEventHandler<InputSnapshotEvent> handler in inputSnapshotEventHandlers)
-        {
-            eventBus.Subscribe(handler);
-        }
+        eventBus.Subscribe(processEventHandler);
+        eventBus.Subscribe(windowEventHandler);
+        eventBus.Subscribe(inputSnapshotEventHandler);
 
         foreach (ICollector collector in collectors)
         {
