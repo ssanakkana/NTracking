@@ -1,0 +1,156 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\NTracking\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\NTracking\\NTracking.Infrastructure\\Storage\\SqliteConnectionFactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NTracking.Infrastructure\\Storage\\SqliteConnectionFactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\NTracking\\NTracking.Infrastructure\\Storage\\EventBatchWriter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NTracking.Infrastructure\\Storage\\EventBatchWriter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\NTracking\\NTracking.Infrastructure\\Storage\\EventRepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NTracking.Infrastructure\\Storage\\EventRepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\NTracking\\NTracking.Infrastructure\\NTracking.Infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NTracking.Infrastructure\\NTracking.Infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\NTracking\\NTracking.Infrastructure\\Storage\\StorageOptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NTracking.Infrastructure\\Storage\\StorageOptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\NTracking\\NTracking.Infrastructure\\Storage\\StorageRuntime.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NTracking.Infrastructure\\Storage\\StorageRuntime.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\NTracking\\NTracking.Infrastructure\\Storage\\StoredEvent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NTracking.Infrastructure\\Storage\\StoredEvent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\NTracking\\NTracking.Core\\NTracking.Core.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NTracking.Core\\NTracking.Core.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "EventRepository.cs",
+              "DocumentMoniker": "D:\\NTracking\\NTracking.Infrastructure\\Storage\\EventRepository.cs",
+              "RelativeDocumentMoniker": "NTracking.Infrastructure\\Storage\\EventRepository.cs",
+              "ToolTip": "D:\\NTracking\\NTracking.Infrastructure\\Storage\\EventRepository.cs",
+              "RelativeToolTip": "NTracking.Infrastructure\\Storage\\EventRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T08:22:30.808Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "NTracking.Infrastructure.csproj",
+              "DocumentMoniker": "D:\\NTracking\\NTracking.Infrastructure\\NTracking.Infrastructure.csproj",
+              "RelativeDocumentMoniker": "NTracking.Infrastructure\\NTracking.Infrastructure.csproj",
+              "ToolTip": "D:\\NTracking\\NTracking.Infrastructure\\NTracking.Infrastructure.csproj",
+              "RelativeToolTip": "NTracking.Infrastructure\\NTracking.Infrastructure.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-02-26T08:22:23.639Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SqliteConnectionFactory.cs",
+              "DocumentMoniker": "D:\\NTracking\\NTracking.Infrastructure\\Storage\\SqliteConnectionFactory.cs",
+              "RelativeDocumentMoniker": "NTracking.Infrastructure\\Storage\\SqliteConnectionFactory.cs",
+              "ToolTip": "D:\\NTracking\\NTracking.Infrastructure\\Storage\\SqliteConnectionFactory.cs",
+              "RelativeToolTip": "NTracking.Infrastructure\\Storage\\SqliteConnectionFactory.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T08:20:18.498Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "StorageRuntime.cs",
+              "DocumentMoniker": "D:\\NTracking\\NTracking.Infrastructure\\Storage\\StorageRuntime.cs",
+              "RelativeDocumentMoniker": "NTracking.Infrastructure\\Storage\\StorageRuntime.cs",
+              "ToolTip": "D:\\NTracking\\NTracking.Infrastructure\\Storage\\StorageRuntime.cs",
+              "RelativeToolTip": "NTracking.Infrastructure\\Storage\\StorageRuntime.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T08:20:12.832Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "StoredEvent.cs",
+              "DocumentMoniker": "D:\\NTracking\\NTracking.Infrastructure\\Storage\\StoredEvent.cs",
+              "RelativeDocumentMoniker": "NTracking.Infrastructure\\Storage\\StoredEvent.cs",
+              "ToolTip": "D:\\NTracking\\NTracking.Infrastructure\\Storage\\StoredEvent.cs",
+              "RelativeToolTip": "NTracking.Infrastructure\\Storage\\StoredEvent.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T08:20:10.353Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "StorageOptions.cs",
+              "DocumentMoniker": "D:\\NTracking\\NTracking.Infrastructure\\Storage\\StorageOptions.cs",
+              "RelativeDocumentMoniker": "NTracking.Infrastructure\\Storage\\StorageOptions.cs",
+              "ToolTip": "D:\\NTracking\\NTracking.Infrastructure\\Storage\\StorageOptions.cs",
+              "RelativeToolTip": "NTracking.Infrastructure\\Storage\\StorageOptions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T08:19:38.887Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "EventBatchWriter.cs",
+              "DocumentMoniker": "D:\\NTracking\\NTracking.Infrastructure\\Storage\\EventBatchWriter.cs",
+              "RelativeDocumentMoniker": "NTracking.Infrastructure\\Storage\\EventBatchWriter.cs",
+              "ToolTip": "D:\\NTracking\\NTracking.Infrastructure\\Storage\\EventBatchWriter.cs",
+              "RelativeToolTip": "NTracking.Infrastructure\\Storage\\EventBatchWriter.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T08:19:33.135Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "NTracking.Core.csproj",
+              "DocumentMoniker": "D:\\NTracking\\NTracking.Core\\NTracking.Core.csproj",
+              "RelativeDocumentMoniker": "NTracking.Core\\NTracking.Core.csproj",
+              "ToolTip": "D:\\NTracking\\NTracking.Core\\NTracking.Core.csproj*",
+              "RelativeToolTip": "NTracking.Core\\NTracking.Core.csproj*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-02-26T08:19:21.385Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+D:\NTracking\Tools\UiaCaretProbe\obj\Debug\net10.0-windows\UiaCaretProbe.GeneratedMSBuildEditorConfig.editorconfig
+D:\NTracking\Tools\UiaCaretProbe\obj\Debug\net10.0-windows\UiaCaretProbe.AssemblyInfoInputs.cache
+D:\NTracking\Tools\UiaCaretProbe\obj\Debug\net10.0-windows\UiaCaretProbe.AssemblyInfo.cs
+D:\NTracking\Tools\UiaCaretProbe\obj\Debug\net10.0-windows\UiaCaretProbe.csproj.CoreCompileInputs.cache
+D:\NTracking\Tools\UiaCaretProbe\bin\Debug\net10.0-windows\UiaCaretProbe.exe
+D:\NTracking\Tools\UiaCaretProbe\bin\Debug\net10.0-windows\UiaCaretProbe.deps.json
+D:\NTracking\Tools\UiaCaretProbe\bin\Debug\net10.0-windows\UiaCaretProbe.runtimeconfig.json
+D:\NTracking\Tools\UiaCaretProbe\bin\Debug\net10.0-windows\UiaCaretProbe.dll
+D:\NTracking\Tools\UiaCaretProbe\bin\Debug\net10.0-windows\UiaCaretProbe.pdb
+D:\NTracking\Tools\UiaCaretProbe\obj\Debug\net10.0-windows\UiaCaretProbe.dll
+D:\NTracking\Tools\UiaCaretProbe\obj\Debug\net10.0-windows\refint\UiaCaretProbe.dll
+D:\NTracking\Tools\UiaCaretProbe\obj\Debug\net10.0-windows\UiaCaretProbe.pdb
+D:\NTracking\Tools\UiaCaretProbe\obj\Debug\net10.0-windows\UiaCaretProbe.genruntimeconfig.cache
+D:\NTracking\Tools\UiaCaretProbe\obj\Debug\net10.0-windows\ref\UiaCaretProbe.dll

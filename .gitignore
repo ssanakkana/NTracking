@@ -1,0 +1,4 @@
+# Forbidden
+*/bin
+*/obj
+*.db

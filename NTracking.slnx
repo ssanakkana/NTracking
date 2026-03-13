@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="NTracking.Core/NTracking.Core.csproj" />
+  <Project Path="NTracking.Host/NTracking.Host.csproj" />
+  <Project Path="NTracking.Infrastructure/NTracking.Infrastructure.csproj" />
+</Solution>

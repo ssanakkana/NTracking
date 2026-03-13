@@ -1,0 +1,10 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\NTracking.Host",
+    "\\NTracking.Infrastructure",
+    "\\NTracking.Infrastructure\\Storage"
+  ],
+  "SelectedNode": "\\NTracking.Infrastructure\\Storage\\SqliteConnectionFactory.cs",
+  "PreviewInSolutionExplorer": false
+}
