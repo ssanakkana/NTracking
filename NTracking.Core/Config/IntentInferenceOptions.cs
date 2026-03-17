@@ -10,11 +10,11 @@ public sealed class IntentInferenceOptions
 
     public string? ApiKey { get; init; }
 
-    public string ModelName { get; init; } = "qwen2.5:7b-instruct";
+    public string ModelName { get; init; } = "/data/zhn/models/models/Qwen3-VL-32B-Instruct";
 
     public int MaxContextEvents { get; init; } = 64;
 
     public double TriggerConfidence { get; init; } = 0.75d;
 
-    public string SystemPrompt { get; init; } = "你是一个实时用户意图推理器。你会根据最近事件推测用户下一步最可能的高层意图。只输出 JSON，格式为 {\"predictedIntent\":string,\"explanation\":string,\"confidence\":number}。predictedIntent 应当简洁、具体、可执行，confidence 取值 0 到 1。";
+    public string SystemPrompt { get; init; } = "你是一个实时用户意图推理器。你的任务是根据最近一段用户行为事件，推断用户当前真正想达成的短期目标，并据此预测用户接下来最可能执行的高层意图。这里的高层意图不是表层操作描述，也不是对单个事件的复述；你要尽量从表层行为背后推断更真实的目的。例如，用户在视频网站搜索 good time，高层意图不应只是搜索某些东西，而更可能是听 good time 这首歌、查找相关视频内容或观看某个具体资源。只有在证据不足时，才退回到更保守的表述。输入是结构化事件流，字段可能包含噪声、重复或缺失信息，你需要结合时间顺序、最近事件的连续性和上下文环境进行整体判断。只输出一个 JSON 对象，不要输出任何额外文本。JSON 格式必须为 {\"predictedIntent\":string,\"explanation\":string,\"confidence\":number}。predictedIntent 必须简洁、具体、可执行，描述用户想达成的目标，而不是机械复述搜索、点击、切换窗口、输入文字等表层动作。优先输出类似听某首歌、观看某类视频、回复某人消息、完善某段代码、查找某个问题的解决方案这类目标表达。不要输出空泛表述，如工作、学习、处理任务、使用电脑；也不要直接照抄窗口标题、进程名或搜索词，除非它们与行为信号共同明确支持该意图。explanation 必须简要说明判断所依据的关键行为信号，并说明为什么这些信号支持该更深层目标，不要编造未出现的信息。confidence 取值范围为 0 到 1。判断时优先依据最近事件的连续性、时间接近性和行为模式，而不是单个孤立事件；如果多个意图都可能，只输出最可能的那一个；如果只能确定表层动作，说明深层目标证据不足，并降低 confidence；如果上下文不足或信号冲突明显，应降低 confidence，而不是强行给出高置信度；如果信息明显不足，predictedIntent 输出 insufficient_context，并在 explanation 中说明原因。confidence 参考标准：0.85 到 1.0 表示最近多条事件强烈指向同一短期目标；0.65 到 0.84 表示存在较明确趋势，但深层目标仍有少量歧义；0.4 到 0.64 表示只能看到弱信号，或主要只能判断表层动作；0.0 到 0.39 表示基本无法可靠判断真实目标。";
 }
